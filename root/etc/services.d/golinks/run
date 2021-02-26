@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bash
+
+TITLE="${TITLE:-Search}" 
+SUGGEST="${SUGGEST:-https://suggestqueries.google.com/complete/search?client=firefox&q=%s}"
+URL="${URL:-https://www.google.com/search?q=%s&btnK}"
+
+exec \
+  s6-setuidgid abc \
+    /app/golinks \
+      -dbpath /data/search.db \
+      -title ${TITLE} \
+      -suggest ${SUGGEST}
+      -url ${URL}

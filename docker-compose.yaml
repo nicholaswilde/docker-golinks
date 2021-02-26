@@ -1,17 +1,22 @@
 ---
 version: "2.1"
 services:
-  template:
-    image: nicholaswilde/template:latest
-    container_name: template-default
+  golinks:
+    image: nicholaswilde/golinks:latest
+    container_name: golinks-default
     ports:
-      - 3000:3000
+      - 8000:8000
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      - SUGGEST=https://suggestqueries.google.com/complete/search?client=firefox&q=%s
+      - TITLE=Search
+      - URL=https://www.google.com/search?q=%s&btnK
     restart: unless-stopped
     volumes:
       - app:/app
-      - config:/config
-      - defaults:/defaults
+      - data:/data
 volumes:
   app:
-  config:
-  defaults:
+  data:

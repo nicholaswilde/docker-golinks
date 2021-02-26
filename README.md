@@ -1,12 +1,12 @@
-# Docker Template
-[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/nicholaswilde/template)](https://hub.docker.com/r/nicholaswilde/template)
-[![Docker Pulls](https://img.shields.io/docker/pulls/nicholaswilde/template)](https://hub.docker.com/r/nicholaswilde/template)
-[![GitHub](https://img.shields.io/github/license/nicholaswilde/docker-template)](./LICENSE)
-[![ci](https://github.com/nicholaswilde/docker-template/workflows/ci/badge.svg)](https://github.com/nicholaswilde/docker-template/actions?query=workflow%3Aci)
-[![lint](https://github.com/nicholaswilde/docker-template/workflows/lint/badge.svg?branch=main)](https://github.com/nicholaswilde/docker-template/actions?query=workflow%3Alint)
+# Docker golinks
+[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/nicholaswilde/golinks)](https://hub.docker.com/r/nicholaswilde/golinks)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nicholaswilde/golinks)](https://hub.docker.com/r/nicholaswilde/golinks)
+[![GitHub](https://img.shields.io/github/license/nicholaswilde/docker-golinks)](./LICENSE)
+[![ci](https://github.com/nicholaswilde/docker-golinks/workflows/ci/badge.svg)](https://github.com/nicholaswilde/docker-golinks/actions?query=workflow%3Aci)
+[![lint](https://github.com/nicholaswilde/docker-golinks/workflows/lint/badge.svg?branch=main)](https://github.com/nicholaswilde/docker-golinks/actions?query=workflow%3Alint)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
-A multi-architecture image for [template](https://github.com/nicholaswilde/docker-template).
+A multi-architecture image for [golinks](https://github.com/prologic/golinks).
 
 ## Architecutres
 
@@ -23,14 +23,21 @@ A multi-architecture image for [template](https://github.com/nicholaswilde/docke
 
 ```bash
 $ docker run -d \
-  --name=template \
+  --name=golinks-default \
   -e TZ=America/Los_Angeles `# optional` \
   -e PUID=1000  `# optional` \
-  -e PGID=1000   `# optional` \
-  -p 3000:3000 \
+  -e PGID=1000  `# optional` \
+  -e SUGGEST=https://suggestqueries.google.com/complete/search?client=firefox&q=%s `# optional` \
+  -e TITLE=Search `# optional` \
+  -e URL=https://www.google.com/search?q=%s&btnK `# optional` \
+  -p 8000:8000 \
   --restart unless-stopped \
-  nicholaswilde/template
+  nicholaswilde/golinks
 ```
+
+### docker-compose
+
+See [docker-compose.yaml](./docker-compose.yaml).
 
 ## Configuration
 
@@ -38,9 +45,10 @@ $ docker run -d \
 |----:|:---:|
 | abc | 911 |
 
-### docker-compose
+### Environmental Variables
 
-See [docker-compose.yaml](./docker-compose.yaml).
+See [golinks](https://github.com/prologic/golinks#configuration)
+
 
 ## Development
 
