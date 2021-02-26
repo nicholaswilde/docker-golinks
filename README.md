@@ -8,7 +8,7 @@
 
 A multi-architecture image for [golinks](https://github.com/prologic/golinks).
 
-## Architecutres
+## Architectures
 
 * [x] `armv7`
 * [x] `arm64`
