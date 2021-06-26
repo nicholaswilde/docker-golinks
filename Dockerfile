@@ -1,13 +1,13 @@
-FROM golang:1.14.15-alpine3.13 as build
+FROM golang:1.16.5-alpine3.14 as build
 ARG VERSION
-ARG COMMIT=154c5815e338b6947427c7a76329ad654708f45c
+ARG COMMIT
 ENV GO111MODULE on
 WORKDIR /go/src/github.com/prologic/golinks
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN \
   echo "**** install packages ****" && \
   apk add --no-cache \
-    git=2.30.2-r0 \
+    git=2.32.0-r0 \
     make=4.3-r0 \
     build-base=0.5-r2 && \
   echo "**** download golinks ****" && \
@@ -16,7 +16,7 @@ RUN \
   git reset --hard "${COMMIT}" && \
   make TAG=${VERSION} BUILD=dev build
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.13
+FROM ghcr.io/linuxserver/baseimage-alpine:3.14
 ARG BUILD_DATE
 ARG VERSION
 # hadolint ignore=DL3048
